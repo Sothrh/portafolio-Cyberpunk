@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="description" content="Portafolio profesional de desarrollo frontend y diseño digital: proyectos web, aplicaciones y diseño con estética cyberpunk, modo claro y oscuro.">
+  <meta name="theme-color" content="#080c12">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Tu Nombre · Portfolio / Cyberpunk Edition">
+  <meta property="og:description" content="Frontend, interfaces digitales y experiencias con propósito. Explora proyectos de Web, App y Diseño.">
+  <meta property="og:locale" content="es_DO">
+  <title>Tu Nombre — Creative Developer · Cyberpunk Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" rel="stylesheet">
+  <style>
+    :root{font-synthesis:none;scroll-behavior:smooth}
+    *,*::before,*::after{box-sizing:border-box}
+    html[data-theme="dark"]{--bg:#080c12;--bg-2:#0e151e;--surface:#111b25;--surface-2:#162430;--text:#f2fafb;--muted:#b2c1ca;--line:#304550;--accent:#71ffda;--accent-2:#a6e4ff;--accent-soft:rgba(113,255,218,.11);--card-shadow:0 18px 52px rgba(0,0,0,.25);--nav:rgba(8,12,18,.86);--canvas-alpha:.21;--dark-chip:#0d1c25;--inverted:#07141b;--focus:#71ffda}
+    html[data-theme="light"]{--bg:#f7fbfd;--bg-2:#edf4f6;--surface:#ffffff;--surface-2:#e8f0f3;--text:#102734;--muted:#385565;--line:#b9cdd4;--accent:#006b57;--accent-2:#15577f;--accent-soft:rgba(0,107,87,.1);--card-shadow:0 18px 52px rgba(12,47,60,.1);--nav:rgba(247,251,253,.91);--canvas-alpha:.085;--dark-chip:#e7f3f3;--inverted:#ffffff;--focus:#00553f}
+    html{background:var(--bg);scroll-padding-top:100px} body{position:relative;isolation:isolate;overflow-x:hidden;background:transparent;color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.65;transition:color .25s ease;background-color:transparent}
+    #matrixCanvas{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:var(--canvas-alpha)}
+    body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 50% 50% at 72% 11%,rgba(73,232,201,.07),transparent 75%),linear-gradient(180deg,var(--bg) 0%,transparent 23%,var(--bg) 83%)}
+    html[data-theme="light"] body::before{background:radial-gradient(ellipse 60% 45% at 75% 12%,rgba(0,113,91,.08),transparent 76%),linear-gradient(180deg,rgba(247,251,253,.86),rgba(247,251,253,.7))}
+    body::selection{background:var(--accent);color:var(--inverted)}
+    a{color:inherit;text-decoration:none}a:hover{color:var(--accent)}button,input,textarea{font:inherit}
+    a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--focus);outline-offset:4px}
+    .skip-link{position:fixed;top:-90px;left:16px;z-index:9999;padding:12px 20px;background:var(--accent);color:var(--inverted)}.skip-link:focus{top:16px}
+    .reading-progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:1200;box-shadow:0 0 13px var(--accent)}
+    .layout{max-width:1210px;margin-inline:auto;padding-inline:28px}
+    .site-header{position:sticky;top:0;z-index:1100;background:var(--nav);border-bottom:1px solid var(--line);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
+    .topbar{height:84px;display:flex;align-items:center;gap:28px}.brand{display:inline-flex;gap:10px;align-items:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:15px;letter-spacing:-.07em;white-space:nowrap;color:var(--text)}.brand:hover{color:var(--text)}
+    .brand-mark{height:35px;width:35px;border:1px solid var(--accent);border-radius:10px;color:var(--accent);display:grid;place-items:center;font-size:16px;box-shadow:inset 0 0 19px var(--accent-soft)}
+    .brand em{font-style:normal;color:var(--accent)}.nav-links{display:flex;align-items:center;gap:27px;margin:0;padding:0;list-style:none;margin-left:auto}.nav-links a{font-size:13px;font-weight:700;color:var(--muted);transition:color .2s}.nav-links a:hover,.nav-links a.active{color:var(--accent)}
+    .nav-actions{display:flex;align-items:center;gap:11px}.theme-toggle,.menu-toggle{height:42px;width:42px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--text);display:inline-grid;place-items:center;transition:transform .2s,border-color .2s}.theme-toggle:hover,.menu-toggle:hover{border-color:var(--accent);transform:translateY(-2px)}.menu-toggle{display:none}
+    .nav-cta{padding:10px 17px;border:1px solid var(--accent);border-radius:11px;color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.01em;white-space:nowrap}.nav-cta:hover{background:var(--accent);color:var(--inverted)}
+    .eyebrow{color:var(--accent);font:600 11px/1.5 'JetBrains Mono',monospace;letter-spacing:.15em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px}.eyebrow:before{content:"";height:1px;width:25px;background:var(--accent)}
+    .hero{min-height:710px;display:flex;align-items:center;padding-block:112px 108px;position:relative}.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(330px,.85fr);gap:85px;align-items:center;width:100%}.hero-kicker{margin-bottom:22px;display:flex;align-items:center;gap:10px;font:600 12px 'JetBrains Mono',monospace;color:var(--muted)}.live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px var(--accent-soft),0 0 18px var(--accent)}
+    h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;letter-spacing:-.05em}h1{font-size:clamp(54px,6vw,91px);line-height:1.02;font-weight:700;margin:0 0 28px}h1 .stroke{display:block;color:var(--accent)}.hero-description{font-size:17px;color:var(--muted);max-width:570px;margin-bottom:34px}.hero-description strong{color:var(--text);font-weight:700}
+    .hero-buttons{display:flex;flex-wrap:wrap;gap:13px}.btn-primary-cyber,.btn-secondary-cyber{display:inline-flex;align-items:center;gap:12px;padding:15px 21px;font:700 12px 'JetBrains Mono',monospace;border-radius:12px;transition:transform .22s,box-shadow .22s;min-height:50px}.btn-primary-cyber{background:var(--accent);color:var(--inverted);border:1px solid var(--accent)}.btn-primary-cyber:hover{transform:translateY(-3px);box-shadow:0 10px 30px var(--accent-soft);color:var(--inverted)}.btn-secondary-cyber{border:1px solid var(--line);color:var(--text);background:var(--surface)}.btn-secondary-cyber:hover{border-color:var(--accent);transform:translateY(-3px);color:var(--accent)}
+    .hero-socials{display:flex;gap:17px;align-items:center;margin-top:36px;font-size:19px}.hero-socials a{color:var(--muted);transition:color .2s,transform .2s}.hero-socials a:hover{color:var(--accent);transform:translateY(-3px)}.hero-socials .separator{width:45px;height:1px;background:var(--line)}.micro{font:500 10px 'JetBrains Mono',monospace;color:var(--muted);letter-spacing:.08em}
+    .portrait-stage{position:relative;max-width:440px;width:100%;margin:auto;aspect-ratio:1/1.08}.portrait-frame{position:absolute;inset:28px 21px 18px 22px;border:1px solid var(--line);border-radius:26px;overflow:hidden;background:radial-gradient(circle at 55% 19%,rgba(121,246,216,.18),transparent 40%),linear-gradient(155deg,#1e3948 0%,#10212e 55%,#0c171f 100%);box-shadow:var(--card-shadow)}
+    .portrait-frame:before{content:"";position:absolute;inset:12px;border:1px solid rgba(173,236,222,.13);border-radius:19px;pointer-events:none}.portrait-frame:after{content:"";position:absolute;left:0;right:0;bottom:0;height:35%;background:linear-gradient(transparent,rgba(1,10,17,.7));pointer-events:none}
+    .profile-placeholder{position:absolute;inset:12% 5% 0;width:90%;height:95%;filter:drop-shadow(0 16px 45px rgba(2,16,22,.45))}.orbit{position:absolute;width:300px;height:300px;border:1px dashed rgba(121,246,216,.38);border-radius:50%;top:9%;left:13%;pointer-events:none}.portrait-card{position:absolute;z-index:3;padding:13px 16px;background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:12px;box-shadow:var(--card-shadow)}.portrait-card.top{right:-9px;top:7px}.portrait-card.bottom{left:-15px;bottom:4px}.portrait-card .lead{display:block;font:700 12px 'JetBrains Mono',monospace;color:var(--accent)}.portrait-card .sub{display:block;font:500 10px 'JetBrains Mono',monospace;color:var(--muted);margin-top:3px}.portrait-label{position:absolute;bottom:43px;left:47px;z-index:2;font:700 11px 'JetBrains Mono',monospace;letter-spacing:.12em;color:#d6fbef}.portrait-label span{display:block;color:#8cbbba;margin-top:4px;font-size:9px}
+    .metrics-bar{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface);margin-top:0}.metrics-grid{display:grid;grid-template-columns:repeat(3,1fr)}.metric{padding:28px 30px;display:flex;align-items:center;gap:19px;justify-content:center}.metric+.metric{border-left:1px solid var(--line)}.metric strong{font:700 35px/1 'Space Grotesk',sans-serif;color:var(--accent);letter-spacing:-.06em}.metric span{color:var(--muted);font:600 11px/1.6 'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.07em}
+    section{scroll-margin-top:98px}.section-space{padding-block:116px}.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;margin-bottom:45px}.section-title{font:700 clamp(36px,4.1vw,55px)/1.11 'Space Grotesk',sans-serif;margin:15px 0 0;max-width:720px}.section-title span{color:var(--accent)}.section-desc{font-size:14px;color:var(--muted);max-width:355px;margin:0 0 5px}
+    .about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:55px}.about-capsule{border:1px solid var(--line);border-radius:19px;background:var(--surface);padding:29px;position:relative;overflow:hidden;min-height:310px;display:flex;flex-direction:column;justify-content:space-between}.about-capsule:after{content:"";position:absolute;height:230px;width:230px;border:1px solid var(--accent);border-radius:50%;opacity:.2;right:-105px;bottom:-105px;box-shadow:0 0 0 35px var(--accent-soft),0 0 0 90px rgba(114,255,218,.025)}.about-capsule .big{font:700 35px/1.15 'Space Grotesk',sans-serif;max-width:280px;letter-spacing:-.055em}.about-capsule .big em{font-style:normal;color:var(--accent)}.about-text p{font-size:16px;color:var(--muted);margin-bottom:19px}.about-text p strong{color:var(--text)}.about-points{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin-top:29px}.about-point{border-top:1px solid var(--line);padding-top:15px;display:flex;align-items:center;gap:12px;font-size:13px;font-weight:700}.about-point i{color:var(--accent);font-size:17px}
+    .stack-section{background:linear-gradient(180deg,transparent,var(--accent-soft) 45%,transparent)}.stack-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}.stack-card{background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:27px 22px;display:flex;align-items:center;gap:18px;transition:transform .25s,border-color .25s,box-shadow .25s;min-height:107px}.stack-card:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:var(--card-shadow)}.stack-card>i{font-size:32px;line-height:1}.stack-card strong{font-family:'Space Grotesk',sans-serif;font-size:17px;display:block}.stack-card span{font:500 10px 'JetBrains Mono',monospace;color:var(--muted)}
+    .filter-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:25px}.filter-btn{border:1px solid var(--line);background:var(--surface);color:var(--muted);padding:11px 17px;border-radius:11px;font:700 11px 'JetBrains Mono',monospace;transition:color .2s,border-color .2s,background .2s}.filter-btn:hover{border-color:var(--accent);color:var(--accent)}.filter-btn[aria-pressed="true"]{background:var(--accent);color:var(--inverted);border-color:var(--accent)}.filter-count{margin-left:auto;color:var(--muted);font:600 11px 'JetBrains Mono',monospace}
+    .projects-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:21px}.project-card{border:1px solid var(--line);border-radius:17px;overflow:hidden;background:var(--surface);transition:border-color .2s,transform .25s,box-shadow .25s;display:flex;flex-direction:column}.project-card:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:var(--card-shadow)}.project-card[hidden]{display:none!important}.project-art{height:214px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}.art-web{background:linear-gradient(140deg,#123840,#071e29 70%)}.art-app{background:linear-gradient(135deg,#172d50,#231b41)}.art-design{background:linear-gradient(135deg,#293744,#113e39)}.art-web:before,.art-app:before,.art-design:before{content:"";position:absolute;width:270px;height:270px;border:1px solid rgba(255,255,255,.09);border-radius:50%;top:-140px;right:-80px;box-shadow:0 0 0 35px rgba(255,255,255,.025),0 0 0 75px rgba(255,255,255,.02)}.mock-window{position:relative;width:77%;height:74%;border:1px solid rgba(255,255,255,.24);background:#071620;border-radius:9px;transform:rotate(-6deg);box-shadow:15px 20px 35px rgba(0,0,0,.25);overflow:hidden}.mock-top{height:22px;border-bottom:1px solid rgba(255,255,255,.12);display:flex;align-items:center;gap:4px;padding-left:9px}.mock-top b{width:5px;height:5px;background:#548080;border-radius:50%}.mock-top b:first-child{background:#ed837f}.mock-content{padding:13px;display:grid;grid-template-columns:1fr .65fr;gap:12px;align-items:center}.mock-copy span{display:block;background:#d7edf0;height:6px;border-radius:9px;margin-bottom:8px}.mock-copy span:first-child{background:#6bf0c7;width:80%;height:11px}.mock-copy span:nth-child(2){width:96%;opacity:.42}.mock-copy span:nth-child(3){width:62%;opacity:.42}.mock-copy small{background:#3c9b89;display:block;border-radius:5px;width:55%;height:15px;margin-top:13px}.mock-panel{height:80px;border-radius:7px;background:linear-gradient(145deg,#76f7d0,#255a70)}.mock-phone{position:relative;height:169px;width:91px;border:4px solid #b3b4d9;border-radius:20px;background:linear-gradient(155deg,#4a5c94,#1a244f);box-shadow:14px 17px 25px rgba(0,0,0,.4);transform:rotate(10deg);padding:24px 9px 10px}.mock-phone:before{content:"";position:absolute;width:27px;height:5px;background:#a1a9c4;top:6px;left:28px;border-radius:6px}.phone-block{height:38px;background:linear-gradient(105deg,#a595fa,#6fe7e2);border-radius:7px;margin-bottom:7px}.phone-line{height:5px;border-radius:7px;background:#8590c2;margin-bottom:6px;width:75%}.mock-phone.two{transform:rotate(-12deg) translate(10px,10px);height:149px;background:linear-gradient(135deg,#284365,#196f6c)}.poster-stack{position:relative;width:138px;height:144px;transform:rotate(-10deg)}.poster-stack:before{content:"";position:absolute;inset:9px -25px -9px 27px;background:#b1a2eb;border-radius:7px;transform:rotate(12deg)}.poster-front{position:absolute;inset:0;border-radius:7px;background:linear-gradient(155deg,#67eecf,#277f7f);display:flex;align-items:flex-end;overflow:hidden;padding:13px}.poster-front:before{content:"";position:absolute;width:145px;height:145px;border:24px solid rgba(0,31,39,.35);border-radius:50%;top:-30px;right:-55px}.poster-front strong{position:relative;z-index:2;color:#053a37;font:700 29px/.9 'Space Grotesk',sans-serif;letter-spacing:-.08em;max-width:120px}.project-info{padding:22px 23px 23px;flex:1;display:flex;flex-direction:column}.project-meta{display:flex;align-items:center;justify-content:space-between;font:600 10px 'JetBrains Mono',monospace;letter-spacing:.07em;color:var(--accent)}.project-index{color:var(--muted)}.project-name{font:700 22px 'Space Grotesk',sans-serif;letter-spacing:-.04em;margin:15px 0 7px}.project-summary{color:var(--muted);font-size:13px;line-height:1.65;margin-bottom:22px;flex:1}.project-foot{display:flex;gap:7px;align-items:center;justify-content:space-between}.tech-pill{font:600 10px 'JetBrains Mono',monospace;padding:6px 8px;border:1px solid var(--line);color:var(--muted);border-radius:6px}.detail-button{border:0;background:none;color:var(--accent);font-size:19px;padding:4px 8px}.detail-button:hover{transform:translateX(3px)}
+    .experience-track{display:flex;justify-content:center;flex-wrap:wrap;gap:19px}.experience-card{width:calc((100% - 38px)/3);min-width:275px;border:1px solid var(--line);border-radius:17px;background:var(--surface);padding:27px;position:relative}.experience-card:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px var(--accent-soft);position:absolute;left:29px;top:31px}.experience-date{font:600 11px 'JetBrains Mono',monospace;color:var(--muted);margin-left:19px}.experience-card h3{font:700 21px 'Space Grotesk',sans-serif;margin:32px 0 5px}.experience-role{font:600 12px 'JetBrains Mono',monospace;color:var(--accent)}.experience-card p{font-size:13px;color:var(--muted);margin:17px 0 0}.experience-note{margin-top:23px;color:var(--muted);font-size:12px;text-align:center}
+    .video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.video-card{background:var(--surface);border:1px solid var(--line);border-radius:17px;overflow:hidden}.video-frame{aspect-ratio:16/9;background:#13232c}.video-frame iframe{display:block;width:100%;height:100%;border:0}.video-info{padding:20px 21px}.video-info h3{font:700 19px 'Space Grotesk',sans-serif;margin:0 0 6px}.video-info p{margin:0;font-size:12px;color:var(--muted)}
+    .contact-section{padding-bottom:125px}.contact-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:53px}.contact-intro h2{font:700 clamp(37px,4vw,55px)/1.1 'Space Grotesk',sans-serif;letter-spacing:-.055em;margin:16px 0 18px}.contact-intro h2 span{color:var(--accent)}.contact-intro p{font-size:15px;color:var(--muted)}.contact-channels{margin-top:37px;display:grid;gap:15px}.contact-channel{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--text);overflow-wrap:anywhere}.contact-channel i{width:39px;height:39px;display:grid;place-items:center;border:1px solid var(--line);border-radius:11px;color:var(--accent)}
+    .contact-form{border:1px solid var(--line);border-radius:18px;background:var(--surface);padding:33px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:19px}.field{margin-bottom:18px}.field label{display:block;margin-bottom:9px;color:var(--text);font:700 11px 'JetBrains Mono',monospace}.field input,.field textarea{width:100%;padding:13px 14px;background:var(--bg-2);color:var(--text);border:1px solid var(--line);border-radius:10px;outline:0;transition:border-color .2s;min-height:49px}.field textarea{min-height:140px;resize:vertical}.field input::placeholder,.field textarea::placeholder{color:var(--muted);opacity:.8}.field input:focus,.field textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}.send-row{display:flex;justify-content:space-between;align-items:center;gap:15px}.send-status{font-size:12px;max-width:290px;color:var(--muted)}.send-status[data-state="error"]{color:#fa9190}.send-status[data-state="success"]{color:var(--accent)}html[data-theme="light"] .send-status[data-state="error"]{color:#a72b2b}.send-btn:disabled{opacity:.65;cursor:wait}.honeypot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+    .site-footer{border-top:1px solid var(--line);background:var(--surface);padding:31px 0}.footer-row{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}.footer-row p{font:500 11px 'JetBrains Mono',monospace;color:var(--muted);margin:0}.footer-row a{font:600 11px 'JetBrains Mono',monospace;color:var(--accent)}
+    .project-modal .modal-content{background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:19px}.project-modal .modal-header,.project-modal .modal-footer{border-color:var(--line)}.project-modal .btn-close{filter:invert(1)}html[data-theme="light"] .project-modal .btn-close{filter:none}.project-modal p{color:var(--muted)}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}.reveal.is-visible{opacity:1;transform:none}
+    @media(max-width:1100px){.nav-links{gap:17px}.hero-grid{gap:35px}.stack-grid{grid-template-columns:repeat(4,1fr)}.stack-card{padding:20px 14px;gap:13px}.stack-card>i{font-size:27px}}
+    @media(max-width:900px){.topbar{height:76px}.menu-toggle{display:inline-grid}.nav-links{display:none;position:absolute;top:76px;left:0;right:0;flex-direction:column;align-items:stretch;padding:18px 26px 24px;background:var(--nav);border-bottom:1px solid var(--line);backdrop-filter:blur(20px);gap:8px}.nav-links.is-open{display:flex}.nav-links a{display:block;padding:10px 0}.nav-actions{margin-left:auto}.hero{min-height:auto;padding-block:86px}.hero-grid{grid-template-columns:1fr .75fr;gap:24px}h1{font-size:clamp(48px,6vw,70px)}.portrait-stage{min-width:0}.projects-grid,.video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stack-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.experience-card{width:calc((100% - 19px)/2)}.contact-grid{gap:25px}}
+    @media(max-width:700px){.layout{padding-inline:20px}.hero{padding-block:72px}.hero-grid{grid-template-columns:1fr;gap:40px}.hero-copy{order:1}.portrait-stage{order:2;max-width:370px}.hero h1{font-size:clamp(48px,10vw,70px)}.hero-description{font-size:15px}.metrics-grid{grid-template-columns:1fr}.metric+.metric{border-left:0;border-top:1px solid var(--line)}.metric{padding:18px 12px}.section-space{padding-block:78px}.section-head{display:block}.section-desc{margin-top:15px}.about-grid,.contact-grid{grid-template-columns:1fr;gap:25px}.about-capsule{min-height:230px}.projects-grid,.video-grid{grid-template-columns:1fr}.project-art{height:230px}.filter-count{flex-basis:100%;margin-left:0;margin-top:7px}.experience-card{width:100%}.contact-form{padding:22px}.form-grid{grid-template-columns:1fr;gap:0}.send-row{flex-wrap:wrap}.nav-cta{display:none}}
+    @media(max-width:420px){.layout{padding-inline:16px}.brand{font-size:13px}.hero-buttons{flex-direction:column;align-items:stretch}.hero-buttons a{justify-content:center}.stack-grid{grid-template-columns:1fr}.portrait-card.top{right:-1px}.portrait-card.bottom{left:0}.about-points{grid-template-columns:1fr}.portrait-label{left:36px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+  <canvas id="matrixCanvas" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <nav class="topbar layout" aria-label="Navegación principal">
+      <a href="#inicio" class="brand"><span class="brand-mark"><i class="bi bi-terminal" aria-hidden="true"></i></span><span>PORTFOLIO<em>_</em>OS</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#sobre-mi">Sobre mí</a></li><li><a href="#stack">Stack</a></li><li><a href="#proyectos">Proyectos</a></li><li><a href="#experiencia">Experiencia</a></li><li><a href="#videos">Videos</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" type="button" id="themeToggle" aria-label="Cambiar a modo claro" aria-pressed="false" title="Cambiar tema"><i class="bi bi-sun-fill" id="themeIcon" aria-hidden="true"></i></button>
+        <a href="#contacto" class="nav-cta">HABLEMOS <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+        <button class="menu-toggle" type="button" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks"><i class="bi bi-list" aria-hidden="true"></i></button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <section class="hero layout" id="inicio" aria-labelledby="heroTitle">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="hero-kicker"><span class="live-dot" aria-hidden="true"></span> SISTEMA CREATIVO ACTIVO <span class="micro">/ 2026</span></div>
+          <h1 id="heroTitle">Ideas que<br>rompen el <span class="stroke">código.</span></h1>
+          <p class="hero-description">Hola, soy <strong>Tu Nombre</strong>, <strong>desarrollador/a frontend y diseñador/a digital</strong>. Transformo conceptos en interfaces memorables, accesibles y preparadas para el futuro.</p>
+          <div class="hero-buttons"><a href="#proyectos" class="btn-primary-cyber">EXPLORAR PROYECTOS <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a><a href="#contacto" class="btn-secondary-cyber">CONTACTARME <i class="bi bi-arrow-right" aria-hidden="true"></i></a></div>
+          <div class="hero-socials"><span class="separator" aria-hidden="true"></span><span class="micro">EN LA RED</span><a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub (personalizar enlace)"><i class="bi bi-github" aria-hidden="true"></i></a><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (personalizar enlace)"><i class="bi bi-linkedin" aria-hidden="true"></i></a><a href="#contacto" aria-label="Ir a contacto"><i class="bi bi-envelope-at" aria-hidden="true"></i></a></div>
+        </div>
+        <div class="portrait-stage" aria-label="Ilustración de perfil temporal. Sustitúyela con tu foto antes de entregar.">
+          <div class="portrait-frame">
+            <div class="orbit" aria-hidden="true"></div>
+            <!-- FOTO DE PERFIL: Sustituye el SVG de abajo por <img src="tu-foto.jpg" alt="Tu Nombre" class="profile-placeholder" style="object-fit:cover"> si dispones de tu fotografía. -->
+            <svg class="profile-placeholder" viewBox="0 0 380 430" role="img" aria-label="Marcador ilustrado de fotografía personal">
+              <defs><linearGradient id="shirt" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#2e6869"/><stop offset="1" stop-color="#102f43"/></linearGradient><linearGradient id="face" x1="0" x2="1"><stop stop-color="#aaccc9"/><stop offset="1" stop-color="#73aaa9"/></linearGradient></defs>
+              <circle cx="190" cy="155" r="119" fill="none" stroke="#67d8ca" stroke-opacity=".22" stroke-width="2" stroke-dasharray="4 9"/>
+              <path d="M35 430c8-117 62-167 157-170 92-3 150 61 160 170" fill="url(#shirt)"/><path d="M113 299l79 88 78-91" fill="none" stroke="#6de0d0" stroke-opacity=".35" stroke-width="3"/>
+              <path d="M167 227v69l24 30 24-31v-68" fill="#7aa6a4"/>
+              <ellipse cx="190" cy="166" rx="75" ry="94" fill="url(#face)"/>
+              <path d="M114 153c-2-80 29-106 78-107 51-2 91 38 79 114l-10-21-9-24c-34 14-74 8-111-7-7 23-17 30-27 45z" fill="#0b2029"/>
+              <path d="M158 177h17m31 0h17" stroke="#16434b" stroke-width="4" stroke-linecap="round"/><path d="M176 224q16 11 31-1" stroke="#285e61" stroke-width="3" stroke-linecap="round" fill="none"/>
+              <path d="M75 411l20-87m211 87-19-87" stroke="#7dcfba" stroke-opacity=".25" stroke-width="2"/>
+            </svg>
+            <div class="portrait-label">TU NOMBRE<span>FRONTEND / DIGITAL DESIGN</span></div>
+          </div>
+          <div class="portrait-card top"><span class="lead"><i class="bi bi-code-slash" aria-hidden="true"></i> CODE + CREATE</span><span class="sub">EST. 2026 / WEB EXPERIENCE</span></div>
+          <div class="portrait-card bottom"><span class="lead"><i class="bi bi-shield-check" aria-hidden="true"></i> HUMAN × AI</span><span class="sub">CREATIVIDAD AUMENTADA</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="metrics-bar" aria-label="Resumen del portafolio"><div class="layout metrics-grid"><div class="metric"><strong>09</strong><span>Proyectos<br>de muestra</span></div><div class="metric"><strong>03</strong><span>Categorías<br>explorables</span></div><div class="metric"><strong>100%</strong><span>Diseño<br>responsive</span></div></div></div>
+
+    <section id="sobre-mi" class="section-space layout" aria-labelledby="aboutTitle">
+      <div class="section-head reveal"><div><span class="eyebrow">01 / IDENTIDAD</span><h2 id="aboutTitle" class="section-title">Detrás de cada <span>pixel.</span></h2></div><p class="section-desc">Más que una página: una forma de pensar, experimentar y crear productos digitales.</p></div>
+      <div class="about-grid"><div class="about-capsule reveal"><span class="micro">// MANIFIESTO CREATIVO</span><div class="big">Diseño útil.<br>Código limpio.<br><em>Impacto real.</em></div><span class="micro">ESTÉTICA + FUNCIONALIDAD + ACCESIBILIDAD</span></div><div class="about-text reveal"><p>Me apasiona construir experiencias web donde la estética convive con el rendimiento. Combino <strong>frontend, diseño UI/UX y herramientas de inteligencia artificial</strong> para explorar soluciones, acelerar prototipos y resolver problemas.</p><p>Este portafolio es un proyecto de demostración desarrollado con HTML5, CSS3, Bootstrap 5 y JavaScript puro, sin frameworks adicionales ni servidor.</p><div class="about-points"><div class="about-point"><i class="bi bi-check2-circle" aria-hidden="true"></i> Pensamiento centrado en el usuario</div><div class="about-point"><i class="bi bi-check2-circle" aria-hidden="true"></i> Código escalable y semántico</div><div class="about-point"><i class="bi bi-check2-circle" aria-hidden="true"></i> Experiencias multiplataforma</div><div class="about-point"><i class="bi bi-check2-circle" aria-hidden="true"></i> Iteración impulsada por IA</div></div></div></div>
+    </section>
+
+    <section class="stack-section section-space" id="stack" aria-labelledby="stackTitle"><div class="layout"><div class="section-head reveal"><div><span class="eyebrow">02 / HERRAMIENTAS</span><h2 id="stackTitle" class="section-title">Mi arsenal <span>digital.</span></h2></div><p class="section-desc">Tecnologías de diseño y desarrollo representadas mediante sus íconos oficiales de Devicon.</p></div><div class="stack-grid">
+      <div class="stack-card reveal"><i class="devicon-html5-plain colored" aria-hidden="true"></i><div><strong>HTML5</strong><span>ESTRUCTURA</span></div></div>
+      <div class="stack-card reveal"><i class="devicon-css3-plain colored" aria-hidden="true"></i><div><strong>CSS3</strong><span>ESTILO</span></div></div>
+      <div class="stack-card reveal"><i class="devicon-javascript-plain colored" aria-hidden="true"></i><div><strong>JavaScript</strong><span>INTERACCIÓN</span></div></div>
+      <div class="stack-card reveal"><i class="devicon-bootstrap-plain colored" aria-hidden="true"></i><div><strong>Bootstrap</strong><span>RESPONSIVE</span></div></div>
+      <div class="stack-card reveal"><i class="devicon-git-plain colored" aria-hidden="true"></i><div><strong>Git</strong><span>VERSIONADO</span></div></div>
+      <div class="stack-card reveal"><i class="devicon-github-original" aria-hidden="true"></i><div><strong>GitHub</strong><span>REPOSITORIOS</span></div></div>
+      <div class="stack-card reveal"><i class="devicon-figma-plain colored" aria-hidden="true"></i><div><strong>Figma</strong><span>PROTOTIPOS</span></div></div>
+      <div class="stack-card reveal"><i class="devicon-vscode-plain colored" aria-hidden="true"></i><div><strong>VS Code</strong><span>EDITOR</span></div></div>
+    </div></div></section>
+
+    <section class="section-space layout" id="proyectos" aria-labelledby="projectsTitle"><div class="section-head reveal"><div><span class="eyebrow">03 / TRABAJOS SELECCIONADOS</span><h2 id="projectsTitle" class="section-title">Laboratorio de <span>ideas.</span></h2></div><p class="section-desc">Nueve conceptos de muestra para presentar tu trabajo. Filtra por disciplina y abre la ficha de cada uno.</p></div>
+      <div class="filter-row reveal" role="group" aria-label="Filtrar proyectos"><button class="filter-btn" type="button" data-filter="todos" aria-pressed="true">Todos <span aria-hidden="true">/</span> 09</button><button class="filter-btn" type="button" data-filter="web" aria-pressed="false">Web</button><button class="filter-btn" type="button" data-filter="app" aria-pressed="false">App</button><button class="filter-btn" type="button" data-filter="diseno" aria-pressed="false">Diseño</button><span class="filter-count" id="projectCount" role="status" aria-live="polite">MOSTRANDO 09 PROYECTOS</span></div>
+      <div class="projects-grid" id="projectsGrid">
+        <article class="project-card reveal" data-category="web" data-project="0"><div class="project-art art-web" aria-hidden="true"><div class="mock-window"><div class="mock-top"><b></b><b></b><b></b></div><div class="mock-content"><div class="mock-copy"><span></span><span></span><span></span><small></small></div><div class="mock-panel"></div></div></div></div><div class="project-info"><div class="project-meta"><span>WEB EXPERIENCE</span><span class="project-index">/ 01</span></div><h3 class="project-name">Nexus Commerce</h3><p class="project-summary">Concepto de e-commerce con interfaz editorial, catálogo filtrable y experiencia mobile-first.</p><div class="project-foot"><span class="tech-pill">HTML · CSS · JS</span><button class="detail-button" type="button" data-bs-toggle="modal" data-bs-target="#projectModal" aria-label="Ver detalles de Nexus Commerce"><i class="bi bi-arrow-up-right-circle" aria-hidden="true"></i></button></div></div></article>
+        <article class="project-card reveal" data-category="app" data-project="1"><div class="project-art art-app" aria-hidden="true"><div class="mock-phone two"><div class="phone-block"></div><div class="phone-line"></div><div class="phone-line"></div></div><div class="mock-phone"><div class="phone-block"></div><div class="phone-line"></div><div class="phone-line"></div><div class="phone-line"></div></div></div><div class="project-info"><div class="project-meta"><span>APP DESIGN</span><span class="project-index">/ 02</span></div><h3 class="project-name">Pulse Finance</h3><p class="project-summary">Dashboard financiero con jerarquía visual clara, tarjetas y seguimiento de actividad.</p><div class="project-foot"><span class="tech-pill">UI · DASHBOARD</span><button class="detail-button" type="button" data-bs-toggle="modal" data-bs-target="#projectModal" aria-label="Ver detalles de Pulse Finance"><i class="bi bi-arrow-up-right-circle" aria-hidden="true"></i></button></div></div></article>
+        <article class="project-card reveal" data-category="diseno" data-project="2"><div class="project-art art-design" aria-hidden="true"><div class="poster-stack"><div class="poster-front"><strong>MOVE<br>BEYOND.</strong></div></div></div><div class="project-info"><div class="project-meta"><span>VISUAL IDENTITY</span><span class="project-index">/ 03</span></div><h3 class="project-name">Beyond Studio</h3><p class="project-summary">Sistema visual futurista para una marca creativa con identidad tipográfica potente.</p><div class="project-foot"><span class="tech-pill">BRANDING · UI</span><button class="detail-button" type="button" data-bs-toggle="modal" data-bs-target="#projectModal" aria-label="Ver detalles de Beyond Studio"><i class="bi bi-arrow-up-right-circle" aria-hidden="true"></i></button></div></div></article>
+        <article class="project-card reveal" data-category="web" data-project="3"><div class="project-art art-web" aria-hidden="true"><div class="mock-window" style="transform:rotate(5deg)"><div class="mock-top"><b></b><b></b><b></b></div><div class="mock-content"><div class="mock-panel" style="background:linear-gradient(145deg,#a7eff2,#1f7b88)"></div><div class="mock-copy"><span></span><span></span><span></span><small></small></div></div></div></div><div class="project-info"><div class="project-meta"><span>WEB PLATFORM</span><span class="project-index">/ 04</span></div><h3 class="project-name">Orbit Analytics</h3><p class="project-summary">Panel de indicadores con componentes reutilizables y visualizaciones legibles.</p><div class="project-foot"><span class="tech-pill">WEB · DATA</span><button class="detail-button" type="button" data-bs-toggle="modal" data-bs-target="#projectModal" aria-label="Ver detalles de Orbit Analytics"><i class="bi bi-arrow-up-right-circle" aria-hidden="true"></i></button></div></div></article>
+        <article class="project-card reveal" data-category="app" data-project="4"><div class="project-art art-app" aria-hidden="true"><div class="mock-phone" style="transform:rotate(-8deg);background:linear-gradient(140deg,#235b64,#1c2e4c)"><div class="phone-block" style="background:linear-gradient(130deg,#4bc7ae,#b9f8e9)"></div><div class="phone-line"></div><div class="phone-line"></div></div><div class="mock-phone two" style="transform:rotate(13deg) translate(-10px,13px)"><div class="phone-block"></div><div class="phone-line"></div></div></div><div class="project-info"><div class="project-meta"><span>MOBILE PRODUCT</span><span class="project-index">/ 05</span></div><h3 class="project-name">Flow Tasks</h3><p class="project-summary">Aplicación conceptual de productividad con prioridades, calendarios y microinteracciones.</p><div class="project-foot"><span class="tech-pill">APP · PROTOTYPE</span><button class="detail-button" type="button" data-bs-toggle="modal" data-bs-target="#projectModal" aria-label="Ver detalles de Flow Tasks"><i class="bi bi-arrow-up-right-circle" aria-hidden="true"></i></button></div></div></article>
+        <article class="project-card reveal" data-category="diseno" data-project="5"><div class="project-art art-design" aria-hidden="true"><div class="poster-stack" style="transform:rotate(9deg)"><div class="poster-front" style="background:linear-gradient(155deg,#d8b5ff,#4d79b5)"><strong style="color:#26304d">FORM<br>& FEEL.</strong></div></div></div><div class="project-info"><div class="project-meta"><span>DESIGN SYSTEM</span><span class="project-index">/ 06</span></div><h3 class="project-name">Forma UI Kit</h3><p class="project-summary">Biblioteca conceptual de componentes, tokens y patrones accesibles.</p><div class="project-foot"><span class="tech-pill">FIGMA · SYSTEMS</span><button class="detail-button" type="button" data-bs-toggle="modal" data-bs-target="#projectModal" aria-label="Ver detalles de Forma UI Kit"><i class="bi bi-arrow-up-right-circle" aria-hidden="true"></i></button></div></div></article>
+        <article class="project-card reveal" data-category="web" data-project="6"><div class="project-art art-web" aria-hidden="true"><div class="mock-window" style="transform:rotate(-3deg)"><div class="mock-top"><b></b><b></b><b></b></div><div class="mock-content"><div class="mock-copy"><span></span><span></span><span></span><small></small></div><div class="mock-panel" style="background:linear-gradient(145deg,#fbcd9f,#bc645f)"></div></div></div></div><div class="project-info"><div class="project-meta"><span>EDITORIAL WEB</span><span class="project-index">/ 07</span></div><h3 class="project-name">Atlas Travel</h3><p class="project-summary">Landing de viajes con diseño inmersivo y estructura orientada a conversión.</p><div class="project-foot"><span class="tech-pill">HTML · BOOTSTRAP</span><button class="detail-button" type="button" data-bs-toggle="modal" data-bs-target="#projectModal" aria-label="Ver detalles de Atlas Travel"><i class="bi bi-arrow-up-right-circle" aria-hidden="true"></i></button></div></div></article>
+        <article class="project-card reveal" data-category="app" data-project="7"><div class="project-art art-app" aria-hidden="true"><div class="mock-phone" style="transform:rotate(9deg);background:linear-gradient(150deg,#654d83,#3e2d63)"><div class="phone-block" style="background:linear-gradient(135deg,#f8cba3,#e58fc9)"></div><div class="phone-line"></div></div><div class="mock-phone two" style="transform:rotate(-11deg) translate(15px,15px)"><div class="phone-block"></div><div class="phone-line"></div></div></div><div class="project-info"><div class="project-meta"><span>HEALTH APP</span><span class="project-index">/ 08</span></div><h3 class="project-name">Luma Wellness</h3><p class="project-summary">Prototipo de bienestar que prioriza claridad, hábitos y seguimiento personal.</p><div class="project-foot"><span class="tech-pill">UX · MOBILE</span><button class="detail-button" type="button" data-bs-toggle="modal" data-bs-target="#projectModal" aria-label="Ver detalles de Luma Wellness"><i class="bi bi-arrow-up-right-circle" aria-hidden="true"></i></button></div></div></article>
+        <article class="project-card reveal" data-category="diseno" data-project="8"><div class="project-art art-design" aria-hidden="true"><div class="poster-stack" style="transform:rotate(-4deg)"><div class="poster-front" style="background:linear-gradient(155deg,#a2efba,#538dc7)"><strong style="color:#184552">NEW<br>HORIZON.</strong></div></div></div><div class="project-info"><div class="project-meta"><span>DIGITAL BRAND</span><span class="project-index">/ 09</span></div><h3 class="project-name">Kinetic Identity</h3><p class="project-summary">Identidad visual adaptable a campañas, redes sociales y producto digital.</p><div class="project-foot"><span class="tech-pill">DESIGN · MOTION</span><button class="detail-button" type="button" data-bs-toggle="modal" data-bs-target="#projectModal" aria-label="Ver detalles de Kinetic Identity"><i class="bi bi-arrow-up-right-circle" aria-hidden="true"></i></button></div></div></article>
+      </div>
+    </section>
+
+    <section class="section-space stack-section" id="experiencia" aria-labelledby="expTitle"><div class="layout"><div class="section-head reveal"><div><span class="eyebrow">04 / RECORRIDO</span><h2 id="expTitle" class="section-title">Construyendo <span>trayectoria.</span></h2></div><p class="section-desc">Tres tarjetas editables. Sustituye estos ejemplos por experiencia verificable antes de presentar tu portafolio.</p></div><div class="experience-track">
+      <article class="experience-card reveal"><div class="experience-date">ETAPA 01 · PERSONALIZAR</div><h3>Desarrollo Frontend</h3><div class="experience-role">PROYECTO ACADÉMICO</div><p>Ejemplo de experiencia: creación de páginas semánticas, estilos responsive y lógica de interacción con JavaScript.</p></article>
+      <article class="experience-card reveal"><div class="experience-date">ETAPA 02 · PERSONALIZAR</div><h3>Diseño de Producto</h3><div class="experience-role">PRÁCTICA / PORTAFOLIO</div><p>Ejemplo de experiencia: flujos de usuario, wireframes, sistemas visuales y prototipos orientados a tareas reales.</p></article>
+      <article class="experience-card reveal"><div class="experience-date">ETAPA 03 · PERSONALIZAR</div><h3>Colaboración Creativa</h3><div class="experience-role">TRABAJO EN EQUIPO</div><p>Ejemplo de experiencia: comunicación entre diseño y código, control de versiones y mejora iterativa.</p></article>
+    </div><p class="experience-note">Las experiencias son contenido de demostración, no afirmaciones de empleo real.</p></div></section>
+
+    <section class="section-space layout" id="videos" aria-labelledby="videosTitle"><div class="section-head reveal"><div><span class="eyebrow">05 / INSPO & APRENDIZAJE</span><h2 id="videosTitle" class="section-title">En la misma <span>frecuencia.</span></h2></div><p class="section-desc">Tres videos técnicos públicos de Fireship. Reemplázalos por tus propios destacados si tienes canal de YouTube.</p></div><div class="video-grid">
+      <article class="video-card reveal"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/ok-plXXHlWw" title="HTML in 100 Seconds - Fireship" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div><div class="video-info"><h3>HTML in 100 Seconds</h3><p>Fireship · Fundamentos web</p></div></article>
+      <article class="video-card reveal"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/OEV8gMkCHXQ" title="CSS in 100 Seconds - Fireship" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div><div class="video-info"><h3>CSS in 100 Seconds</h3><p>Fireship · Diseño e interfaces</p></div></article>
+      <article class="video-card reveal"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/DHjqpvDnNGE" title="JavaScript in 100 Seconds - Fireship" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div><div class="video-info"><h3>JavaScript in 100 Seconds</h3><p>Fireship · Programación frontend</p></div></article>
+      <!-- 9 TARJETAS DE VIDEO ADICIONALES (DESCOMENTAR Y CAMBIAR ID + TÍTULO):
+      <article class="video-card"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/REEMPLAZAR_ID_01" title="Video adicional 01" loading="lazy" allowfullscreen></iframe></div><div class="video-info"><h3>Video adicional 01</h3><p>Tu canal · Categoría</p></div></article>
+      <article class="video-card"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/REEMPLAZAR_ID_02" title="Video adicional 02" loading="lazy" allowfullscreen></iframe></div><div class="video-info"><h3>Video adicional 02</h3><p>Tu canal · Categoría</p></div></article>
+      <article class="video-card"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/REEMPLAZAR_ID_03" title="Video adicional 03" loading="lazy" allowfullscreen></iframe></div><div class="video-info"><h3>Video adicional 03</h3><p>Tu canal · Categoría</p></div></article>
+      <article class="video-card"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/REEMPLAZAR_ID_04" title="Video adicional 04" loading="lazy" allowfullscreen></iframe></div><div class="video-info"><h3>Video adicional 04</h3><p>Tu canal · Categoría</p></div></article>
+      <article class="video-card"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/REEMPLAZAR_ID_05" title="Video adicional 05" loading="lazy" allowfullscreen></iframe></div><div class="video-info"><h3>Video adicional 05</h3><p>Tu canal · Categoría</p></div></article>
+      <article class="video-card"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/REEMPLAZAR_ID_06" title="Video adicional 06" loading="lazy" allowfullscreen></iframe></div><div class="video-info"><h3>Video adicional 06</h3><p>Tu canal · Categoría</p></div></article>
+      <article class="video-card"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/REEMPLAZAR_ID_07" title="Video adicional 07" loading="lazy" allowfullscreen></iframe></div><div class="video-info"><h3>Video adicional 07</h3><p>Tu canal · Categoría</p></div></article>
+      <article class="video-card"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/REEMPLAZAR_ID_08" title="Video adicional 08" loading="lazy" allowfullscreen></iframe></div><div class="video-info"><h3>Video adicional 08</h3><p>Tu canal · Categoría</p></div></article>
+      <article class="video-card"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/REEMPLAZAR_ID_09" title="Video adicional 09" loading="lazy" allowfullscreen></iframe></div><div class="video-info"><h3>Video adicional 09</h3><p>Tu canal · Categoría</p></div></article>
+      -->
+    </div></section>
+
+    <section class="contact-section section-space" id="contacto" aria-labelledby="contactTitle"><div class="layout contact-grid"><div class="contact-intro reveal"><span class="eyebrow">06 / CONECTEMOS</span><h2 id="contactTitle">¿Creamos algo <span>extraordinario?</span></h2><p>Las mejores ideas empiezan con una conversación. Cuéntame qué estás imaginando y convirtámoslo en realidad.</p><div class="contact-channels"><div class="contact-channel"><i class="bi bi-envelope" aria-hidden="true"></i><span>Configura tu correo en EmailJS</span></div><div class="contact-channel"><i class="bi bi-globe2" aria-hidden="true"></i><span>Disponible para colaboraciones remotas</span></div></div></div>
+      <form class="contact-form reveal" id="contactForm" novalidate>
+        <div class="form-grid"><div class="field"><label for="fromName">TU NOMBRE *</label><input id="fromName" name="from_name" type="text" autocomplete="name" placeholder="¿Cómo te llamas?" minlength="2" maxlength="100" required></div><div class="field"><label for="replyTo">TU CORREO *</label><input id="replyTo" name="reply_to" type="email" autocomplete="email" placeholder="tu@correo.com" maxlength="150" required></div></div>
+        <div class="field"><label for="subject">ASUNTO *</label><input id="subject" name="subject" type="text" placeholder="Hablemos de un proyecto" maxlength="150" required></div>
+        <div class="field"><label for="message">TU MENSAJE *</label><textarea id="message" name="message" placeholder="Cuéntame sobre tu idea..." minlength="10" maxlength="4000" required></textarea></div>
+        <div class="honeypot" aria-hidden="true"><label for="website">No completar este campo</label><input id="website" type="text" name="website" tabindex="-1" autocomplete="off"></div>
+        <div class="send-row"><p class="send-status" id="sendStatus" role="status" aria-live="polite">El envío requiere tus tres identificadores públicos de EmailJS. Ver README.</p><button class="btn-primary-cyber send-btn" id="sendButton" type="submit">ENVIAR MENSAJE <i class="bi bi-send" aria-hidden="true"></i></button></div>
+      </form></div></section>
+  </main>
+  <footer class="site-footer"><div class="layout footer-row"><div class="brand"><span class="brand-mark"><i class="bi bi-terminal" aria-hidden="true"></i></span><span>PORTFOLIO<em>_</em>OS</span></div><p>© <span id="currentYear">2026</span> TU NOMBRE · HTML / CSS / JS · MIT</p><a href="#inicio">VOLVER ARRIBA <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div></footer>
+
+  <div class="modal fade project-modal" id="projectModal" tabindex="-1" aria-labelledby="modalProjectTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><span class="eyebrow">PROYECTO / DETALLES</span><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button></div><div class="modal-body p-4"><h3 id="modalProjectTitle" class="fs-2 mb-3">Proyecto</h3><p id="modalProjectDescription"></p><p class="micro mt-4">Caso de estudio de demostración. Añade URL del proyecto, capturas y resultados reales cuando estén disponibles.</p></div><div class="modal-footer"><button type="button" class="btn-secondary-cyber" data-bs-dismiss="modal">CERRAR <i class="bi bi-x-lg" aria-hidden="true"></i></button></div></div></div></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    'use strict';
+    // CONFIGURACIÓN DE EMAILJS. Son identificadores PÚBLICOS; NO agregues claves privadas ni contraseñas SMTP.
+    const EMAILJS_CONFIG = { publicKey: 'TU_PUBLIC_KEY', serviceId: 'TU_SERVICE_ID', templateId: 'TU_TEMPLATE_ID' };
+    const $ = (selector) => document.querySelector(selector);
+    const $$ = (selector) => Array.from(document.querySelectorAll(selector));
+    const root = document.documentElement;
+    const themeButton = $('#themeToggle');
+    const themeIcon = $('#themeIcon');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let storedTheme = null;
+    try { storedTheme = localStorage.getItem('cyberTheme'); } catch (e) { /* Navegación privada: continuar sin almacenamiento */ }
+    const startingTheme = storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : 'dark';
+    function applyTheme(theme) {
+      const light = theme === 'light';
+      root.dataset.theme = theme;
+      themeButton.setAttribute('aria-pressed', String(light));
+      themeButton.setAttribute('aria-label', light ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro');
+      themeIcon.className = light ? 'bi bi-moon-stars-fill' : 'bi bi-sun-fill';
+      $('meta[name="theme-color"]').setAttribute('content', light ? '#f7fbfd' : '#080c12');
+      try { localStorage.setItem('cyberTheme', theme); } catch (e) { /* Ignorar almacenamiento bloqueado */ }
+      if (window.matrixVisual) window.matrixVisual.setTheme(theme);
+    }
+    applyTheme(startingTheme);
+    themeButton.addEventListener('click', () => applyTheme(root.dataset.theme === 'dark' ? 'light' : 'dark'));
+
+    const menuButton = $('#menuToggle');
+    const links = $('#navLinks');
+    menuButton.addEventListener('click', () => {
+      const open = links.classList.toggle('is-open');
+      menuButton.setAttribute('aria-expanded', String(open));
+      menuButton.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+      menuButton.querySelector('i').className = open ? 'bi bi-x-lg' : 'bi bi-list';
+    });
+    $$('#navLinks a').forEach(a => a.addEventListener('click', () => {
+      links.classList.remove('is-open'); menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.setAttribute('aria-label', 'Abrir menú'); menuButton.querySelector('i').className = 'bi bi-list';
+    }));
+
+    const filterButtons = $$('.filter-btn');
+    const projectCards = $$('.project-card');
+    function filterProjects(category) {
+      let visible = 0;
+      projectCards.forEach(card => { const show = category === 'todos' || card.dataset.category === category; card.hidden = !show; if (show) visible++; });
+      filterButtons.forEach(btn => btn.setAttribute('aria-pressed', String(btn.dataset.filter === category)));
+      $('#projectCount').textContent = `MOSTRANDO ${String(visible).padStart(2, '0')} PROYECTOS`;
+    }
+    filterButtons.forEach(btn => btn.addEventListener('click', () => filterProjects(btn.dataset.filter)));
+
+    const projectDetails = [
+      ['Nexus Commerce', 'E-commerce conceptual para explorar arquitectura de catálogo, jerarquía editorial y experiencia de compra adaptable.'],
+      ['Pulse Finance', 'Propuesta UI para visualizar saldos, transacciones e indicadores con componentes que priorizan la legibilidad.'],
+      ['Beyond Studio', 'Exploración de identidad de marca, tipografía, paleta de color y consistencia gráfica.'],
+      ['Orbit Analytics', 'Concepto de dashboard con tarjetas de información, indicadores y navegación por módulos.'],
+      ['Flow Tasks', 'Prototipo móvil de gestión de tareas con organización de prioridades, calendarios y flujo diario.'],
+      ['Forma UI Kit', 'Sistema de diseño con criterios de espaciado, contraste, tipografía y reutilización de componentes.'],
+      ['Atlas Travel', 'Landing de viajes con contenidos ordenados para fomentar exploración y conversión.'],
+      ['Luma Wellness', 'Prototipo enfocado en hábitos personales, navegación calmada y registro de actividad.'],
+      ['Kinetic Identity', 'Propuesta de marca digital adaptable a piezas gráficas, campañas y pantallas.']
+    ];
+    const modal = $('#projectModal');
+    modal.addEventListener('show.bs.modal', event => {
+      const card = event.relatedTarget?.closest('.project-card');
+      const details = projectDetails[Number(card?.dataset.project)] || ['Proyecto', 'Información no disponible.'];
+      $('#modalProjectTitle').textContent = details[0];
+      $('#modalProjectDescription').textContent = details[1];
+    });
+
+    const revealEls = $$('.reveal');
+    if ('IntersectionObserver' in window && !reducedMotion.matches) {
+      const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); revealObserver.unobserve(entry.target); } }), {threshold:.09, rootMargin:'0px 0px 35px 0px'});
+      revealEls.forEach(el => revealObserver.observe(el));
+    } else revealEls.forEach(el => el.classList.add('is-visible'));
+    $('#currentYear').textContent = new Date().getFullYear();
+    let scrollScheduled = false;
+    window.addEventListener('scroll', () => { if (scrollScheduled) return; scrollScheduled = true; requestAnimationFrame(() => { const max = document.documentElement.scrollHeight - innerHeight; $('#readingProgress').style.width = `${max > 0 ? Math.min(100, scrollY / max * 100) : 0}%`; scrollScheduled = false; }); }, {passive:true});
+
+    // MATRIX: canvas transparente, z-index: -1, velocidad moderada y respeto a "reducir movimiento".
+    (function initMatrix() {
+      const canvas = $('#matrixCanvas');
+      const ctx = canvas.getContext('2d', {alpha:true});
+      if (!ctx) return;
+      let columns = [], width = 0, height = 0, grid = 25, last = 0, raf = 0, theme = root.dataset.theme;
+      const alphabet = '01<>/{}#$+*ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      function resize() {
+        width = window.innerWidth; height = window.innerHeight;
+        const ratio = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.round(width * ratio); canvas.height = Math.round(height * ratio);
+        canvas.style.width = width + 'px'; canvas.style.height = height + 'px';
+        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+        grid = width <= 600 ? 28 : 26;
+        columns = Array.from({length:Math.ceil(width / grid)}, () => Math.random() * -height / grid);
+        ctx.clearRect(0,0,width,height);
+      }
+      function draw(time) {
+        raf = requestAnimationFrame(draw);
+        if (document.hidden || time - last < 52) return;
+        last = time;
+        ctx.fillStyle = theme === 'dark' ? 'rgba(8,12,18,.09)' : 'rgba(247,251,253,.16)';
+        ctx.fillRect(0,0,width,height);
+        ctx.font = `12px 'JetBrains Mono',monospace`;
+        ctx.textAlign = 'left';
+        ctx.fillStyle = theme === 'dark' ? '#8bffe0' : '#00705c';
+        columns.forEach((pos, index) => {
+          const letter = alphabet[Math.floor(Math.random() * alphabet.length)];
+          const y = pos * grid;
+          if (y > 0 && y < height) ctx.fillText(letter, index * grid + 5, y);
+          columns[index] = pos + .31;
+          if (y > height && Math.random() > .965) columns[index] = -Math.random() * 20;
+        });
+      }
+      resize();
+      if (reducedMotion.matches) {ctx.fillStyle = theme === 'dark' ? '#90ffdc' : '#006b57';ctx.font = '12px monospace';columns.forEach((_,i)=>ctx.fillText(alphabet[i%alphabet.length],i*grid+5,25+(i%6)*45));}
+      else raf = requestAnimationFrame(draw);
+      window.addEventListener('resize', resize, {passive:true});
+      reducedMotion.addEventListener?.('change', () => {cancelAnimationFrame(raf);resize();if (!reducedMotion.matches) raf=requestAnimationFrame(draw);});
+      window.matrixVisual = {setTheme: value => {theme=value;ctx.clearRect(0,0,width,height);}};
+    })();
+
+    const form = $('#contactForm');
+    const status = $('#sendStatus');
+    const sendButton = $('#sendButton');
+    const configured = Object.values(EMAILJS_CONFIG).every(v => v && !v.startsWith('TU_'));
+    if (configured && window.emailjs) status.textContent = 'Completa los campos y enviaré tu mensaje de forma segura.';
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      status.dataset.state = '';
+      if ($('#website').value.trim()) {status.textContent = 'No se pudo procesar la solicitud.';status.dataset.state='error';return;}
+      if (!form.checkValidity()) {form.reportValidity();status.textContent='Revisa los campos obligatorios antes de enviar.';status.dataset.state='error';return;}
+      if (!configured) {status.textContent='Antes de enviar, configura PUBLIC_KEY, SERVICE_ID y TEMPLATE_ID en index.html (instrucciones en README).';status.dataset.state='error';return;}
+      if (!window.emailjs) {status.textContent='No se pudo cargar EmailJS. Revisa tu conexión e inténtalo de nuevo.';status.dataset.state='error';return;}
+      sendButton.disabled = true;status.textContent = 'Enviando tu mensaje...';
+      try {
+        await emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, {
+          from_name: $('#fromName').value.trim(), reply_to: $('#replyTo').value.trim(), subject: $('#subject').value.trim(), message: $('#message').value.trim()
+        }, {publicKey: EMAILJS_CONFIG.publicKey});
+        form.reset(); status.textContent='¡Mensaje enviado! Gracias por comunicarte.';status.dataset.state='success';
+      } catch(error) {console.error('Error EmailJS:', error?.status || 'error');status.textContent='No se pudo enviar el mensaje. Verifica la configuración de EmailJS e inténtalo otra vez.';status.dataset.state='error';}
+      finally {sendButton.disabled=false;}
+    });
+  </script>
+</body>
+</html>
